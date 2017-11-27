@@ -15,32 +15,48 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package nl.hva.dmci.ict.se.datastructures;
 
+/**
+ * 
+ * @author Timo Brasz
+ */
 public abstract class Quicksort {
 
-    /*
+    /**
      * Function that sorts students using QuickSort (in-place)
-     * Parameters:
-     *   students = Array of students
-     *   firstpos = Position of the first element in the array (Usually 0)
-     *   lastpos = Position of the final element in the array (Usually (students.length - 1))
+     *
+     * @param students Array of students
+     * @param firstpos Position of the first element in the array (Usually 0)
+     * @param lastpos Position of the final element in the array (Usually (students.length - 1))
      */
     public static void quickSort11(Student[] students, int firstpos, int lastpos) {
-		/* Variable Declarations */
-        Student temp; /* Temporary Student needed to swap places */
-        int i, j; /* Integers i and j for moving data around pivots */
+        /* Variable Declarations */
+        Student temp;
+        /* Temporary Student needed to swap places */
+        int i, j;
+        /* Integers i and j for moving data around pivots */
 
-		/* Quits if the list is one item or less */
-        if ((lastpos - firstpos) < 1) return;
+ /* Quits if the list is one item or less */
+        if ((lastpos - firstpos) < 1) {
+            return;
+        }
 
-		/* Determines pivot as best out of three and sets it as first */
+        /* Determines pivot as best out of three and sets it as first */
         if ((lastpos - firstpos) >= 2) {
             i = 0;
-            if (students[firstpos].compareTo(students[firstpos + 1]) > 0) i |= 1;
-            if (students[firstpos + 1].compareTo(students[firstpos + 2]) > 0) i |= 2;
-            if (students[firstpos].compareTo(students[firstpos + 2]) > 0) i |= 4;
+            if (students[firstpos].compareTo(students[firstpos + 1]) > 0) {
+                i |= 1;
+            }
+
+            if (students[firstpos + 1].compareTo(students[firstpos + 2]) > 0) {
+                i |= 2;
+            }
+
+            if (students[firstpos].compareTo(students[firstpos + 2]) > 0) {
+                i |= 4;
+            }
+
             switch (i) {
                 case 0:
                 case 7:
@@ -57,79 +73,103 @@ public abstract class Quicksort {
             }
         }
 
-		/* Sets up i and j */
+        /* Sets up i and j */
         i = (firstpos + 1);
         j = lastpos;
 
-		/* Moves data around the pivot (firstpos) */
+        /* Moves data around the pivot (firstpos) */
         while (i < j) {
-			/* Moves i forwards through the array */
-            while ((i < j) && ((students[i].compareTo(students[firstpos])) < 0)) ++i;
-            if (i == j) break;
-			/* Moves j backwards through the array */
-            while ((i < j) && ((students[j].compareTo(students[firstpos])) >= 0)) --j;
-            if (i == j) break;
-			/* Swaps j and i */
+            /* Moves i forwards through the array */
+            while ((i < j) && ((students[i].compareTo(students[firstpos])) < 0)) {
+                ++i;
+            }
+            if (i == j) {
+                break;
+            }
+            /* Moves j backwards through the array */
+            while ((i < j) && ((students[j].compareTo(students[firstpos])) >= 0)) {
+                --j;
+            }
+            if (i == j) {
+                break;
+            }
+            /* Swaps j and i */
             temp = students[i];
             students[i] = students[j];
             students[j] = temp;
         }
 
-		/* Puts pivot in the correct location if it isn't already */
-        while (students[i].compareTo(students[firstpos]) > 0) --i;
+        /* Puts pivot in the correct location if it isn't already */
+        while (students[i].compareTo(students[firstpos]) > 0) {
+            --i;
+        }
         if (i != firstpos) {
             temp = students[i];
             students[i] = students[firstpos];
             students[firstpos] = temp;
         }
 
-		/* Sorts the sublists on either side of the pivot */
+        /* Sorts the sublists on either side of the pivot */
         quickSort11(students, firstpos, (i - 1));
         quickSort11(students, (i + 1), lastpos);
     }
 
-    /*
+    /**
      * Function that sorts students using QuickSort (in-place)
-     * Parameters:
-     *   students = Array of students
-     *   firstpos = Position of the first element in the array (Usually 0)
-     *   lastpos = Position of the final element in the array (Usually (students.length - 1))
+     *
+     * @param students Array of students
+     * @param firstpos Position of the first element in the array (Usually 0)
+     * @param lastpos Position of the final element in the array (Usually (students.length - 1))
      */
     public static void quickSort10(Student[] students, int firstpos, int lastpos) {
-		/* Variable Declarations */
-        Student temp; /* Temporary Student needed to swap places */
-        int i, j; /* Integers i and j for moving data around pivots */
+        /* Variable Declarations */
+        Student temp;
+        /* Temporary Student needed to swap places */
+        int i, j;
+        /* Integers i and j for moving data around pivots */
 
-		/* Quits if the list is one item or less */
-        if ((lastpos - firstpos) < 1) return;
+ /* Quits if the list is one item or less */
+        if ((lastpos - firstpos) < 1) {
+            return;
+        }
 
-		/* Sets up i and j */
+        /* Sets up i and j */
         i = (firstpos + 1);
         j = lastpos;
 
-		/* Moves data around the pivot (firstpos) */
+        /* Moves data around the pivot (firstpos) */
         while (i < j) {
-			/* Moves i forwards through the array */
-            while ((i < j) && ((students[i].compareTo(students[firstpos])) < 0)) ++i;
-            if (i == j) break;
-			/* Moves j backwards through the array */
-            while ((i < j) && ((students[j].compareTo(students[firstpos])) >= 0)) --j;
-            if (i == j) break;
-			/* Swaps j and i */
+            /* Moves i forwards through the array */
+            while ((i < j) && ((students[i].compareTo(students[firstpos])) < 0)) {
+                ++i;
+            }
+            if (i == j) {
+                break;
+            }
+            /* Moves j backwards through the array */
+            while ((i < j) && ((students[j].compareTo(students[firstpos])) >= 0)) {
+                --j;
+            }
+            if (i == j) {
+                break;
+            }
+            /* Swaps j and i */
             temp = students[i];
             students[i] = students[j];
             students[j] = temp;
         }
 
-		/* Puts pivot in the correct location if it isn't already */
-        while (students[i].compareTo(students[firstpos]) > 0) --i;
+        /* Puts pivot in the correct location if it isn't already */
+        while (students[i].compareTo(students[firstpos]) > 0) {
+            --i;
+        }
         if (i != firstpos) {
             temp = students[i];
             students[i] = students[firstpos];
             students[firstpos] = temp;
         }
 
-		/* Sorts the sublists on either side of the pivot */
+        /* Sorts the sublists on either side of the pivot */
         quickSort10(students, firstpos, (i - 1));
         quickSort10(students, (i + 1), lastpos);
     }
